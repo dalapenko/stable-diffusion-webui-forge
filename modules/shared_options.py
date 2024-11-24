@@ -107,6 +107,7 @@ options_templates.update(options_section(('upscaling', "Upscaling", "postprocess
     "DAT_tile_overlap": OptionInfo(8, "Tile overlap for DAT upscalers.", gr.Slider, {"minimum": 0, "maximum": 48, "step": 1}).info("Low values = visible seam"),
     "upscaler_for_img2img": OptionInfo(None, "Upscaler for img2img", gr.Dropdown, lambda: {"choices": [x.name for x in shared.sd_upscalers]}),
     "set_scale_by_when_changing_upscaler": OptionInfo(False, "Automatically set the Scale by factor based on the name of the selected Upscaler."),
+    "upscale_background_color": OptionInfo("#000000", "With upscale, fill transparent parts of the input image with this color.", ui_components.FormColorPicker, {}),
 }))
 
 options_templates.update(options_section(('face-restoration', "Face restoration", "postprocessing"), {

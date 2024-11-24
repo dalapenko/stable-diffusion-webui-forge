@@ -3,9 +3,10 @@ import re
 from PIL import Image
 import numpy as np
 
-from modules import scripts_postprocessing, shared
+from modules import images, scripts_postprocessing, shared
 import gradio as gr
 
+from modules.shared import opts
 from modules.ui_components import FormRow, ToolButton, InputAccordion
 from modules.ui import switch_values_symbol
 
@@ -86,6 +87,7 @@ class ScriptPostprocessingUpscale(scripts_postprocessing.ScriptPostprocessing):
         }
 
     def upscale(self, image, info, upscaler, upscale_mode, upscale_by, max_side_length, upscale_to_width, upscale_to_height, upscale_crop):
+        image = images.flatten(image, opts.upscale_background_color)
         if upscale_mode == 1:
             upscale_by = max(upscale_to_width/image.width, upscale_to_height/image.height)
             info["Postprocess upscale to"] = f"{upscale_to_width}x{upscale_to_height}"
